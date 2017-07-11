@@ -32,14 +32,18 @@ public:
 	float BaseLookUpRate;
 
 	/** Gun muzzle's offset from the characters location */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	FVector GunOffset;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	TSubclassOf<class AGun> Gun_Blueprint;
+
+private:
+
+	AGun* FP_Gun;
 
 protected:
 	
-
-
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);
 

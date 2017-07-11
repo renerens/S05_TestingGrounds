@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "S05_TestingGrounds.h"
 #include "../Weapons/BallProjectile.h"
+#include "../Weapons/Gun.h"
 #include "Animation/AnimInstance.h"
 #include "GameFramework/InputSettings.h"
 
@@ -52,7 +53,14 @@ void AFirstPersonCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
-	//FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint")); //Attach gun mesh component to Skeleton, doing it here because the skelton is not yet created in the constructor
+	if (Gun_Blueprint == nullptr)
+	{
+		UE_LOG(LogTemp,Warning,TEXT("No Gun BP set?!"))
+		return;
+	}
+
+	FP_Gun = GetWorld()->SpawnActor<AGun>(Gun_Blueprint);
+	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint")); //Attach gun mesh component to Skeleton, doing it here because the skelton is not yet created in the constructor
 }
 
 //////////////////////////////////////////////////////////////////////////
