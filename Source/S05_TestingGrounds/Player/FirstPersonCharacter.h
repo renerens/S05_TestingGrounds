@@ -40,7 +40,7 @@ public:
 
 private:
 
-	AGun* FP_Gun;
+	AGun* Gun;
 
 protected:
 	
